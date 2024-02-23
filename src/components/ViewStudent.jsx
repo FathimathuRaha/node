@@ -1,15 +1,17 @@
 import React, { useState,useEffect } from 'react'
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
+import { Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
 import axios from 'axios';
 
 const ViewStudent = () => {
     var [user,setuser]=useState([]);
     useEffect(()=>{
-     axios.get("https://localhost:4000/students").then((response)=>{
+     axios.get("http://localhost:4001/students").then((response)=>{
         console.log(response.data)
         setuser(response.data);
      })
     },[])
+
+
 
   return (
     <div>
@@ -21,16 +23,24 @@ const ViewStudent = () => {
                         <TableCell style={{color:"blue",fontFamily:"fantasy"}}>Names</TableCell>
                         <TableCell style={{color:"blue",fontFamily:"fantasy"}}>Age</TableCell>
                         <TableCell style={{color:"blue",fontFamily:"fantasy"}}>Department</TableCell>
+                        <TableCell></TableCell>
+                        <TableCell></TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
                 {user.map((val,i)=>{
                         return(
                             <TableRow>
-                                <TableCell key={i}>{val.name}</TableCell>
-                                <TableCell key={i}>{val.age}</TableCell>
-                                <TableCell key={i}>{val.department}</TableCell>
-                            </TableRow>
+                                <TableCell >{val.students_name}</TableCell>
+                                <TableCell >{val.students_age}</TableCell>
+                                <TableCell >{val.students_dept}</TableCell>
+                                <TableCell>
+                                    <Button variant='contained' color='success'>Edit</Button>
+                                </TableCell>
+                                <TableCell>
+                                    <Button variant='contained' color='error'> Delete</Button>
+                                </TableCell>
+                           </TableRow>
                         )
                     })}
                 </TableBody>

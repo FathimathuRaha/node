@@ -11,15 +11,15 @@ const Adds = () => {
 
  console.log(data);
  
-
+ 
   }
 
 
     const Submit=()=>{
-      axios.post("http://localhost:4000/students",{
+      axios.post("http://localhost:4001/students",{
         students_name:data.name,
-        students_age:data.age,
-        studemts_dept:data.dept
+        students_dept:data.dept,
+        students_age:data.age
 
       }).then(()=>{
         alert("new entry created sussessfully");
@@ -37,9 +37,9 @@ const Adds = () => {
 
 <h1>Add Student</h1>
         <br />
-        <TextField variant='outlined' name="username" label=" Name" onChange={Inputhandler}></TextField>
+        <TextField variant='outlined' name="name" label=" Name" onChange={Inputhandler}></TextField>
         <br /><br /><br />
-        <TextField variant='outlined' name="class" label="Department" onChange={Inputhandler}></TextField>
+        <TextField variant='outlined' name="dept" label="Department" onChange={Inputhandler}></TextField>
         <br /><br /><br />
         <TextField variant='outlined' name="age" onChange={Inputhandler} label="age">
 
